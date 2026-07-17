@@ -14,7 +14,7 @@
 </head>
 <body class="theme-dark">
     <!-- Navigation / Top App Bar -->
-    <header class="app-header">
+    <header class="app-header" role="banner">
         <div class="header-container">
             <div class="brand">
                 <div class="brand-badge">FIFA 2026</div>
@@ -28,7 +28,7 @@
             <div class="header-controls">
                 <div class="control-group">
                     <label for="stadiumSelect" class="control-label">Venue:</label>
-                    <select id="stadiumSelect" class="stadium-select">
+                    <select id="stadiumSelect" class="stadium-select" aria-label="Select Host Stadium">
                         <option value="metlife">MetLife Stadium (NY/NJ)</option>
                         <option value="sofi">SoFi Stadium (Los Angeles)</option>
                         <option value="azteca">Estadio Azteca (Mexico City)</option>
@@ -36,24 +36,25 @@
                 </div>
 
                 <!-- Persona Switcher -->
-                <div class="persona-switch-container">
-                    <button id="btnFanMode" class="persona-btn active" data-mode="fan">
+                <div class="persona-switch-container" role="tablist" aria-label="Persona Mode Switcher">
+                    <button id="btnFanMode" class="persona-btn active" data-mode="fan" role="tab" aria-selected="true" aria-controls="fanView">
                         Fan Services
                     </button>
-                    <button id="btnOpsMode" class="persona-btn" data-mode="ops">
+                    <button id="btnOpsMode" class="persona-btn" data-mode="ops" role="tab" aria-selected="false" aria-controls="opsView">
                         Match Control Ops
                     </button>
                 </div>
 
                 <!-- Accessibility & Lang -->
                 <div class="header-actions">
-                    <button id="btnVoiceToggle" class="text-nav-btn" title="Toggle Speech Assistant">
+                    <button id="btnVoiceToggle" class="text-nav-btn" aria-label="Toggle Speech Voice Assistant">
                         Audio Assist
                     </button>
-                    <button id="btnContrastToggle" class="text-nav-btn" title="Toggle High Contrast Mode">
+                    <button id="btnContrastToggle" class="text-nav-btn" aria-label="Toggle High Contrast Display Mode">
                         High Contrast
                     </button>
-                    <select id="langSelect" class="lang-select">
+                    <label for="langSelect" class="visually-hidden">Language</label>
+                    <select id="langSelect" class="lang-select" aria-label="Select Language">
                         <option value="en">English</option>
                         <option value="es">Español</option>
                         <option value="fr">Français</option>
@@ -68,16 +69,16 @@
     </header>
 
     <!-- Main Workspace -->
-    <main class="main-container">
+    <main class="main-container" role="main">
         
         <!-- ========================================== -->
         <!-- VIEW 1: FAN COMPANION & MATCHDAY HUB       -->
         <!-- ========================================== -->
-        <section id="fanView" class="view-section active">
+        <section id="fanView" class="view-section active" role="tabpanel" aria-labelledby="btnFanMode">
             <!-- Hero Banner -->
-            <div class="hero-card">
+            <div class="hero-card" role="region" aria-label="Matchday Overview">
                 <div class="hero-overlay"></div>
-                <img src="/static/images/hero.png" alt="FIFA World Cup 2026 Stadium" class="hero-bg">
+                <img src="/static/images/hero.png" alt="FIFA World Cup 2026 Stadium Arena" class="hero-bg">
                 <div class="hero-content">
                     <div class="hero-badge">FIFA World Cup 2026 Official Tournament Platform</div>
                     <h2 id="heroVenueName">MetLife Stadium • East Rutherford, NJ</h2>
@@ -91,7 +92,7 @@
 
             <div class="grid-layout-2col">
                 <!-- Left Column: GenAI Multilingual Concierge -->
-                <div class="card chat-card">
+                <div class="card chat-card" role="region" aria-label="Multilingual AI Concierge">
                     <div class="card-header">
                         <div class="card-title">
                             <div>
@@ -99,29 +100,29 @@
                                 <p class="card-subtitle">GenAI Assistant for venue navigation, dining, accessibility, and transit</p>
                             </div>
                         </div>
-                        <button id="btnOpenScanner" class="btn btn-secondary btn-sm">
+                        <button id="btnOpenScanner" class="btn btn-secondary btn-sm" aria-label="Open Document Vision Scanner">
                             Scan Ticket / Sign
                         </button>
                     </div>
 
                     <!-- Preset Quick Prompts -->
-                    <div class="quick-prompts-bar">
-                        <button class="prompt-chip" data-query="Which gate has the shortest wait time right now?">
+                    <div class="quick-prompts-bar" role="group" aria-label="Quick Prompt Suggestions">
+                        <button class="prompt-chip" data-query="Which gate has the shortest wait time right now?" aria-label="Ask about fastest gate entry">
                             Fastest Gate Entry
                         </button>
-                        <button class="prompt-chip" data-query="Where can I find Halal or Vegan food near Section 108?">
+                        <button class="prompt-chip" data-query="Where can I find Halal or Vegan food near Section 108?" aria-label="Ask about Halal and Vegan food">
                             Halal & Vegan Options
                         </button>
-                        <button class="prompt-chip" data-query="Where are the accessible wheelchair elevators and sensory rooms?">
+                        <button class="prompt-chip" data-query="Where are the accessible wheelchair elevators and sensory rooms?" aria-label="Ask about elevators and accessibility">
                             Elevators & Accessibility
                         </button>
-                        <button class="prompt-chip" data-query="How do I take the Eco-Shuttle back and claim my 150 Fan Points?">
+                        <button class="prompt-chip" data-query="How do I take the Eco-Shuttle back and claim my 150 Fan Points?" aria-label="Ask about eco transit rewards">
                             Transit & Rewards
                         </button>
                     </div>
 
                     <!-- Chat Message Stream -->
-                    <div id="chatStream" class="chat-stream">
+                    <div id="chatStream" class="chat-stream" role="log" aria-live="polite" aria-label="AI Chat Stream">
                         <div class="chat-bubble bot">
                             <div class="bot-avatar">AI</div>
                             <div class="bubble-content">
@@ -133,11 +134,12 @@
 
                     <!-- Chat Input Controls -->
                     <div class="chat-input-container">
-                        <input type="text" id="chatInput" placeholder="Ask a question in any language (e.g., Which gate is fastest?)...">
-                        <button id="btnVoiceInput" class="btn-text-action" title="Speak to Assistant">
+                        <label for="chatInput" class="visually-hidden">Ask a question</label>
+                        <input type="text" id="chatInput" placeholder="Ask a question in any language (e.g., Which gate is fastest?)..." aria-label="Type your message">
+                        <button id="btnVoiceInput" class="btn-text-action" aria-label="Voice input button">
                             Voice
                         </button>
-                        <button id="btnSendChat" class="btn btn-primary">
+                        <button id="btnSendChat" class="btn btn-primary" aria-label="Send query">
                             Send Query
                         </button>
                     </div>
@@ -146,7 +148,7 @@
                 <!-- Right Column: Interactive Gate Heatmap & Transit -->
                 <div class="right-column-stack">
                     <!-- Live Gate Flow Card -->
-                    <div class="card">
+                    <div class="card" role="region" aria-label="Live Gate Throughput Telemetry">
                         <div class="card-header">
                             <div class="card-title">
                                 <div>
@@ -164,14 +166,14 @@
 
                         <!-- Interactive Stadium Map Graphic -->
                         <div class="stadium-map-wrapper">
-                            <img src="/static/images/stadium_map.png" alt="Stadium Layout Map" class="stadium-map-img">
+                            <img src="/static/images/stadium_map.png" alt="Interactive Stadium Layout Map showing entrance gates" class="stadium-map-img">
                             <div class="map-overlay-tag tag-gate-a">Gate A (4m)</div>
                             <div class="map-overlay-tag tag-gate-c warning">Gate C (22m ALERT)</div>
                         </div>
                     </div>
 
                     <!-- Eco Transit & Rewards Card -->
-                    <div class="card">
+                    <div class="card" role="region" aria-label="Eco Transit & Carbon Planner">
                         <div class="card-header">
                             <div class="card-title">
                                 <div>
@@ -193,19 +195,19 @@
         <!-- ========================================== -->
         <!-- VIEW 2: MATCH CONTROL OPS COMMAND CENTER   -->
         <!-- ========================================== -->
-        <section id="opsView" class="view-section">
+        <section id="opsView" class="view-section" role="tabpanel" aria-labelledby="btnOpsMode">
             <div class="ops-header-bar">
                 <div class="ops-title">
                     <h2>Venue Operational Intelligence Command</h2>
                     <p>Incident Triage, Queue Analysis & SOP Automation</p>
                 </div>
-                <button id="btnGenBriefing" class="btn btn-outline">
+                <button id="btnGenBriefing" class="btn btn-outline" aria-label="Generate Staff Duty Briefing">
                     Generate Staff Duty Briefing
                 </button>
             </div>
 
             <!-- Operational Metric Cards -->
-            <div class="metrics-grid">
+            <div class="metrics-grid" role="region" aria-label="Operational Telemetry Summary">
                 <div class="metric-card">
                     <div class="metric-info">
                         <span class="metric-value" id="valCrowdDensity">68%</span>
@@ -234,7 +236,7 @@
 
             <div class="grid-layout-2col">
                 <!-- Left Column: GenAI Incident Dispatch & Reporter -->
-                <div class="card">
+                <div class="card" role="region" aria-label="Incident Triage & SOP Generator">
                     <div class="card-header">
                         <div class="card-title">
                             <div>
@@ -245,17 +247,18 @@
                     </div>
 
                     <div class="incident-input-box">
-                        <textarea id="incidentInput" rows="3" placeholder="Describe issue in natural language (e.g. Turnstile 7 offline at Gate C, line queueing into north plaza)..."></textarea>
+                        <label for="incidentInput" class="visually-hidden">Incident Description</label>
+                        <textarea id="incidentInput" rows="3" placeholder="Describe issue in natural language (e.g. Turnstile 7 offline at Gate C, line queueing into north plaza)..." aria-label="Natural language incident report input"></textarea>
                         <div class="input-actions">
-                            <button id="btnSampleIncident" class="btn btn-link btn-sm">Load Sample Bottleneck Incident</button>
-                            <button id="btnTriageIncident" class="btn btn-primary">
+                            <button id="btnSampleIncident" class="btn btn-link btn-sm" aria-label="Load sample incident description">Load Sample Bottleneck Incident</button>
+                            <button id="btnTriageIncident" class="btn btn-primary" aria-label="Run AI triage analysis">
                                 Run AI Triage & Dispatch
                             </button>
                         </div>
                     </div>
 
                     <!-- Output Box for SOP Playbook -->
-                    <div id="sopResultBox" class="sop-result-container hidden">
+                    <div id="sopResultBox" class="sop-result-container hidden" role="region" aria-label="Generated SOP Playbook">
                         <div class="sop-header">
                             <span id="sopPriorityBadge" class="badge badge-red">RED-ALERT-1</span>
                             <h4 id="sopCategory">Crowd Surge / Access Gate Bottleneck</h4>
@@ -278,7 +281,7 @@
                 </div>
 
                 <!-- Right Column: Active Incidents Log -->
-                <div class="card">
+                <div class="card" role="region" aria-label="Live Incident Dispatch Feed">
                     <div class="card-header">
                         <div class="card-title">
                             <div>
@@ -297,19 +300,19 @@
     </main>
 
     <!-- Modal 1: Vision Sign & Ticket Scanner -->
-    <div id="scannerModal" class="modal-backdrop hidden">
+    <div id="scannerModal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="modalScannerTitle">
         <div class="modal-card">
             <div class="modal-header">
-                <h3>GenAI Vision Scanner</h3>
-                <button id="btnCloseScanner" class="modal-close">Close</button>
+                <h3 id="modalScannerTitle">GenAI Vision Scanner</h3>
+                <button id="btnCloseScanner" class="modal-close" aria-label="Close modal">Close</button>
             </div>
             <div class="modal-body">
                 <p class="text-muted">Upload or simulate a stadium sign, match ticket, or item for instant parsing and translation.</p>
 
-                <div class="scanner-type-selector">
-                    <button class="scan-type-btn active" data-type="ticket">Match Ticket</button>
-                    <button class="scan-type-btn" data-type="sign">Directional Sign</button>
-                    <button class="scan-type-btn" data-type="lost">Lost & Found Item</button>
+                <div class="scanner-type-selector" role="radiogroup" aria-label="Scan Document Type">
+                    <button class="scan-type-btn active" data-type="ticket" role="radio" aria-checked="true">Match Ticket</button>
+                    <button class="scan-type-btn" data-type="sign" role="radio" aria-checked="false">Directional Sign</button>
+                    <button class="scan-type-btn" data-type="lost" role="radio" aria-checked="false">Lost & Found Item</button>
                 </div>
 
                 <div class="scan-preview-box">
@@ -317,12 +320,12 @@
                     <p id="scanStatusText">Click "Analyze Scan" to parse document using vision AI.</p>
                 </div>
 
-                <div id="scanResult" class="scan-result-card hidden">
+                <div id="scanResult" class="scan-result-card hidden" role="region" aria-label="Scan Result Data">
                     <!-- Populated by JS -->
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="btnRunScan" class="btn btn-primary btn-block">
+                <button id="btnRunScan" class="btn btn-primary btn-block" aria-label="Execute vision AI scan">
                     Analyze Scan with GenAI
                 </button>
             </div>
@@ -330,19 +333,19 @@
     </div>
 
     <!-- Modal 2: Daily Volunteer Briefing -->
-    <div id="briefingModal" class="modal-backdrop hidden">
+    <div id="briefingModal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="modalBriefingTitle">
         <div class="modal-card">
             <div class="modal-header">
-                <h3>Staff & Volunteer Duty Briefing</h3>
-                <button id="btnCloseBriefing" class="modal-close">Close</button>
+                <h3 id="modalBriefingTitle">Staff & Volunteer Duty Briefing</h3>
+                <button id="btnCloseBriefing" class="modal-close" aria-label="Close modal">Close</button>
             </div>
             <div class="modal-body">
-                <div id="briefingContent" class="briefing-content-box">
+                <div id="briefingContent" class="briefing-content-box" role="region" aria-label="Duty Briefing Document">
                     <p class="text-muted">Generating briefing document...</p>
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="btnPrintBriefing" class="btn btn-secondary">
+                <button id="btnPrintBriefing" class="btn btn-secondary" aria-label="Dispatch briefing document">
                     Dispatch to Mobile Units
                 </button>
             </div>
@@ -350,7 +353,7 @@
     </div>
 
     <!-- Footer -->
-    <footer class="app-footer">
+    <footer class="app-footer" role="contentinfo">
         <p>FIFA World Cup 2026 Nexus AI Solution • Stadium Operations & Fan Experience Platform</p>
     </footer>
 
