@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIFA World Cup 2026 - Nexus AI Operations & Fan Hub</title>
+    <meta name="description" content="Tournament Experience, Multilingual Assistance, and Stadium Operational Intelligence Platform for FIFA World Cup 2026.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Main Custom CSS -->
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body class="theme-dark">
+    <!-- Navigation / Top App Bar -->
+    <header class="app-header">
+        <div class="header-container">
+            <div class="brand">
+                <div class="brand-badge">FIFA 2026</div>
+                <div class="brand-title">
+                    <h1>NEXUS <span class="text-highlight">AI</span></h1>
+                    <p class="brand-tagline">Stadium Operations & Fan Services Platform</p>
+                </div>
+            </div>
+
+            <!-- Stadium Selector & Mode Toggle -->
+            <div class="header-controls">
+                <div class="control-group">
+                    <label for="stadiumSelect" class="control-label">Venue:</label>
+                    <select id="stadiumSelect" class="stadium-select">
+                        <option value="metlife">MetLife Stadium (NY/NJ)</option>
+                        <option value="sofi">SoFi Stadium (Los Angeles)</option>
+                        <option value="azteca">Estadio Azteca (Mexico City)</option>
+                    </select>
+                </div>
+
+                <!-- Persona Switcher -->
+                <div class="persona-switch-container">
+                    <button id="btnFanMode" class="persona-btn active" data-mode="fan">
+                        Fan Services
+                    </button>
+                    <button id="btnOpsMode" class="persona-btn" data-mode="ops">
+                        Match Control Ops
+                    </button>
+                </div>
+
+                <!-- Accessibility & Lang -->
+                <div class="header-actions">
+                    <button id="btnVoiceToggle" class="text-nav-btn" title="Toggle Speech Assistant">
+                        Audio Assist
+                    </button>
+                    <button id="btnContrastToggle" class="text-nav-btn" title="Toggle High Contrast Mode">
+                        High Contrast
+                    </button>
+                    <select id="langSelect" class="lang-select">
+                        <option value="en">English</option>
+                        <option value="es">Español</option>
+                        <option value="fr">Français</option>
+                        <option value="ar">Arabic</option>
+                        <option value="pt">Português</option>
+                        <option value="de">Deutsch</option>
+                        <option value="ja">Japanese</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Workspace -->
+    <main class="main-container">
+        
+        <!-- ========================================== -->
+        <!-- VIEW 1: FAN COMPANION & MATCHDAY HUB       -->
+        <!-- ========================================== -->
+        <section id="fanView" class="view-section active">
+            <!-- Hero Banner -->
+            <div class="hero-card">
+                <div class="hero-overlay"></div>
+                <img src="/static/images/hero.png" alt="FIFA World Cup 2026 Stadium" class="hero-bg">
+                <div class="hero-content">
+                    <div class="hero-badge">FIFA World Cup 2026 Official Tournament Platform</div>
+                    <h2 id="heroVenueName">MetLife Stadium • East Rutherford, NJ</h2>
+                    <div class="hero-stats">
+                        <div class="stat-pill">Capacity: <strong>82,500 Max</strong></div>
+                        <div class="stat-pill">Kickoff: <strong>20:00 EST</strong></div>
+                        <div class="stat-pill status-live">GenAI System Status: <strong>Active</strong></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-layout-2col">
+                <!-- Left Column: GenAI Multilingual Concierge -->
+                <div class="card chat-card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <div>
+                                <h3>Multilingual Match Concierge</h3>
+                                <p class="card-subtitle">GenAI Assistant for venue navigation, dining, accessibility, and transit</p>
+                            </div>
+                        </div>
+                        <button id="btnOpenScanner" class="btn btn-secondary btn-sm">
+                            Scan Ticket / Sign
+                        </button>
+                    </div>
+
+                    <!-- Preset Quick Prompts -->
+                    <div class="quick-prompts-bar">
+                        <button class="prompt-chip" data-query="Which gate has the shortest wait time right now?">
+                            Fastest Gate Entry
+                        </button>
+                        <button class="prompt-chip" data-query="Where can I find Halal or Vegan food near Section 108?">
+                            Halal & Vegan Options
+                        </button>
+                        <button class="prompt-chip" data-query="Where are the accessible wheelchair elevators and sensory rooms?">
+                            Elevators & Accessibility
+                        </button>
+                        <button class="prompt-chip" data-query="How do I take the Eco-Shuttle back and claim my 150 Fan Points?">
+                            Transit & Rewards
+                        </button>
+                    </div>
+
+                    <!-- Chat Message Stream -->
+                    <div id="chatStream" class="chat-stream">
+                        <div class="chat-bubble bot">
+                            <div class="bot-avatar">AI</div>
+                            <div class="bubble-content">
+                                <p><strong>FIFA Nexus Assistant:</strong> Welcome to FIFA World Cup 2026.</p>
+                                <p>How can I assist your navigation, concessions, accessibility, or transit today?</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chat Input Controls -->
+                    <div class="chat-input-container">
+                        <input type="text" id="chatInput" placeholder="Ask a question in any language (e.g., Which gate is fastest?)...">
+                        <button id="btnVoiceInput" class="btn-text-action" title="Speak to Assistant">
+                            Voice
+                        </button>
+                        <button id="btnSendChat" class="btn btn-primary">
+                            Send Query
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Column: Interactive Gate Heatmap & Transit -->
+                <div class="right-column-stack">
+                    <!-- Live Gate Flow Card -->
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">
+                                <div>
+                                    <h3>Live Gate Flow & Queue Metrics</h3>
+                                    <p class="card-subtitle">Real-time gate throughput telemetry</p>
+                                </div>
+                            </div>
+                            <span class="badge badge-pulse">LIVE METRICS</span>
+                        </div>
+
+                        <!-- Gate Status Grid -->
+                        <div id="gateGrid" class="gate-grid">
+                            <!-- Populated dynamically -->
+                        </div>
+
+                        <!-- Interactive Stadium Map Graphic -->
+                        <div class="stadium-map-wrapper">
+                            <img src="/static/images/stadium_map.png" alt="Stadium Layout Map" class="stadium-map-img">
+                            <div class="map-overlay-tag tag-gate-a">Gate A (4m)</div>
+                            <div class="map-overlay-tag tag-gate-c warning">Gate C (22m ALERT)</div>
+                        </div>
+                    </div>
+
+                    <!-- Eco Transit & Rewards Card -->
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">
+                                <div>
+                                    <h3>Transit & Commute Planner</h3>
+                                    <p class="card-subtitle">Eco-friendly transit options and rewards</p>
+                                </div>
+                            </div>
+                            <div class="eco-badge">150 Eco Points</div>
+                        </div>
+
+                        <div id="transitList" class="transit-list">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- VIEW 2: MATCH CONTROL OPS COMMAND CENTER   -->
+        <!-- ========================================== -->
+        <section id="opsView" class="view-section">
+            <div class="ops-header-bar">
+                <div class="ops-title">
+                    <h2>Venue Operational Intelligence Command</h2>
+                    <p>Incident Triage, Queue Analysis & SOP Automation</p>
+                </div>
+                <button id="btnGenBriefing" class="btn btn-outline">
+                    Generate Staff Duty Briefing
+                </button>
+            </div>
+
+            <!-- Operational Metric Cards -->
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-info">
+                        <span class="metric-value" id="valCrowdDensity">68%</span>
+                        <span class="metric-label">Avg Stadium Density</span>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-info">
+                        <span class="metric-value">48 / 52</span>
+                        <span class="metric-label">Active Turnstiles</span>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-info">
+                        <span class="metric-value" id="valAvgWait">11 min</span>
+                        <span class="metric-label">Avg Entry Wait</span>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-info">
+                        <span class="metric-value" id="valActiveIncidents">2</span>
+                        <span class="metric-label">Active Incidents</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-layout-2col">
+                <!-- Left Column: GenAI Incident Dispatch & Reporter -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <div>
+                                <h3>Incident Triage & SOP Generator</h3>
+                                <p class="card-subtitle">Input operational issue to auto-generate response protocols and PA announcements</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="incident-input-box">
+                        <textarea id="incidentInput" rows="3" placeholder="Describe issue in natural language (e.g. Turnstile 7 offline at Gate C, line queueing into north plaza)..."></textarea>
+                        <div class="input-actions">
+                            <button id="btnSampleIncident" class="btn btn-link btn-sm">Load Sample Bottleneck Incident</button>
+                            <button id="btnTriageIncident" class="btn btn-primary">
+                                Run AI Triage & Dispatch
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Output Box for SOP Playbook -->
+                    <div id="sopResultBox" class="sop-result-container hidden">
+                        <div class="sop-header">
+                            <span id="sopPriorityBadge" class="badge badge-red">RED-ALERT-1</span>
+                            <h4 id="sopCategory">Crowd Surge / Access Gate Bottleneck</h4>
+                        </div>
+                        
+                        <div class="sop-section">
+                            <h5>Step-by-Step Response Protocol</h5>
+                            <div id="sopStepsList" class="sop-steps"></div>
+                        </div>
+
+                        <div class="sop-section">
+                            <h5>Multi-lingual PA Announcement Draft</h5>
+                            <div class="pa-box">
+                                <p><strong>English:</strong> <span id="paEn"></span></p>
+                                <p><strong>Spanish:</strong> <span id="paEs"></span></p>
+                                <p><strong>French:</strong> <span id="paFr"></span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Active Incidents Log -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <div>
+                                <h3>Live Incident Dispatch Feed</h3>
+                                <p class="card-subtitle">Real-time status tracking & volunteer assignment</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="incidentsFeed" class="incidents-feed">
+                        <!-- Populated dynamically -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal 1: Vision Sign & Ticket Scanner -->
+    <div id="scannerModal" class="modal-backdrop hidden">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>GenAI Vision Scanner</h3>
+                <button id="btnCloseScanner" class="modal-close">Close</button>
+            </div>
+            <div class="modal-body">
+                <p class="text-muted">Upload or simulate a stadium sign, match ticket, or item for instant parsing and translation.</p>
+
+                <div class="scanner-type-selector">
+                    <button class="scan-type-btn active" data-type="ticket">Match Ticket</button>
+                    <button class="scan-type-btn" data-type="sign">Directional Sign</button>
+                    <button class="scan-type-btn" data-type="lost">Lost & Found Item</button>
+                </div>
+
+                <div class="scan-preview-box">
+                    <div class="scan-grid-line"></div>
+                    <p id="scanStatusText">Click "Analyze Scan" to parse document using vision AI.</p>
+                </div>
+
+                <div id="scanResult" class="scan-result-card hidden">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btnRunScan" class="btn btn-primary btn-block">
+                    Analyze Scan with GenAI
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 2: Daily Volunteer Briefing -->
+    <div id="briefingModal" class="modal-backdrop hidden">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>Staff & Volunteer Duty Briefing</h3>
+                <button id="btnCloseBriefing" class="modal-close">Close</button>
+            </div>
+            <div class="modal-body">
+                <div id="briefingContent" class="briefing-content-box">
+                    <p class="text-muted">Generating briefing document...</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btnPrintBriefing" class="btn btn-secondary">
+                    Dispatch to Mobile Units
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+        <p>FIFA World Cup 2026 Nexus AI Solution • Stadium Operations & Fan Experience Platform</p>
+    </footer>
+
+    <!-- Main App JavaScript -->
+    <script src="/static/app.js"></script>
+</body>
+</html>
