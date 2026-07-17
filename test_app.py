@@ -1,16 +1,16 @@
 """
-Automated Pytest Suite for FIFA 2026 Nexus AI Server
+Automated Integration & Unit Test Suite for FIFA 2026 Nexus AI Server
+Compatible with Python unittest and Pytest runners.
 """
 
 import sys
 import os
-import pytest
 
+# Add root directory to sys.path
 sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
 
 from fastapi.testclient import TestClient
 from backend.main import app
-from backend.ai_engine import ai_engine
 
 client = TestClient(app)
 
@@ -62,3 +62,13 @@ def test_vision_scanner():
     assert resp.status_code == 200
     assert "data" in resp.json()
     assert "type" in resp.json()["data"]
+
+if __name__ == "__main__":
+    print("--- Running FIFA 2026 Nexus AI Automated Tests ---")
+    test_stadiums_endpoint()
+    test_stadium_detail_endpoint()
+    test_fan_chat_multilingual()
+    test_ops_incident_triage()
+    test_volunteer_briefing()
+    test_vision_scanner()
+    print("--- ALL AUTOMATED TESTS PASSED SUCCESSFULLY! ---")
