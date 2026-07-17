@@ -5,6 +5,7 @@ Provides REST APIs and WebSocket real-time streams for Fan Companion & Stadium O
 
 import asyncio
 import json
+import random
 from typing import Dict, Any, List, Optional
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect, HTTPException, UploadFile, File, Form
 from fastapi.staticfiles import StaticFiles
